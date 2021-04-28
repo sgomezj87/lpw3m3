@@ -287,7 +287,7 @@ app.post('/registrar', function (req, res){
 	const salt = bcrypt.genSaltSync(saltRounds);
 	let cliente = new Cliente ({
 		cedula: req.body.cedula,
-		contrasena: req.body.contrasena//bcrypt.hashSync(req.body.contrasena, salt),
+		contrasena: req.body.contrasena,//bcrypt.hashSync(req.body.contrasena, salt),
 		nombre: req.body.nombre,
 		pais: req.body.pais	
 	})
