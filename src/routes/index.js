@@ -9,8 +9,8 @@ const dirViews = path.join(__dirname, "../../template/views")
 const dirPartials = path.join(__dirname, '../../template/partials')
 const Cliente = require ('./../models/clientes')
 const {Producto, ClienteProducto} = require ('./../models/productos')
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+//const bcrypt = require('bcryptjs');
+//const saltRounds = 10;
 
 //hbs
 app.set('view engine', 'hbs');
@@ -36,16 +36,16 @@ console.log(parseInt(req.body.usuario), req.body.contrasena)
 			if (!resultado){
 				mensaje= "El usuario no existe"
 			}
-			else{
+			else{/*
 				if(!bcrypt.compareSync(req.body.contrasena, resultado.contrasena)){
 					mensaje= "Contraseña incorrecta"
 				}
-				else{
+				else{*/
 					req.session.usuario = resultado._id
 					console.log("variable de sesión" + req.session.usuario)
 					req.session.nombre = resultado.nombre
 					mensaje= "Bienvenid@ " + resultado.nombre
-				}	
+				//}	
 				
 			}
 			res.render('index',{
@@ -287,7 +287,7 @@ app.post('/registrar', function (req, res){
 	const salt = bcrypt.genSaltSync(saltRounds);
 	let cliente = new Cliente ({
 		cedula: req.body.cedula,
-		contrasena: bcrypt.hashSync(req.body.contrasena, salt),
+		contrasena: req.body.contrasena//bcrypt.hashSync(req.body.contrasena, salt),
 		nombre: req.body.nombre,
 		pais: req.body.pais	
 	})
