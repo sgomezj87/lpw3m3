@@ -1,0 +1,32 @@
+{{>header}}
+<p>Seleccione el producto a comprar </p>
+<form action="/clienteproducto" method="post">
+    <div class="row">
+      <label> Registrar Productos</label>
+    <div class="col-sm">
+      <label for="nombre" class="form-label">Nombre del Cliente</label>
+      {{{listaclientes resc}}}
+      <label for="nombre" class="form-label">Nombre del Producto</label>
+      {{{listaproductos resp}}}           
+    </div>
+    <div class="col-sm">
+      <input type="submit" class='form-control btn btn-success' value="Comprar" >
+    </div>    
+  </div>
+ </form>
+
+ <table class="table">
+  <thead>
+    <th>Cédula</th>
+    <th>Nombre</th>
+    <th>Producto</th>
+    <th>Precio</th>
+  </thead>
+  <tbody>  
+  {{{tablacompra tabla}}}    
+  </tbody>
+</table>
+
+
+
+{{>footer}}

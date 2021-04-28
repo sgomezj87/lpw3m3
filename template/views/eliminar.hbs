@@ -1,0 +1,16 @@
+{{>header}}
+<p>Esta es la página de clientes </p>
+<h1> Lista de clientes</h1>
+<p> Se ha eliminado a {{{nombre}}} con cédula {{{cedula}}}
+<table class="table">
+	<thead>
+		<th>cedula</th>
+		<th>nombre</th>
+		<th>pais</th>
+	</thead>
+	<tbody>
+	{{{listar res}}}
+	</tbody>
+</table>
+
+{{>footer}}

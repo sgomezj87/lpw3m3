@@ -1,0 +1,23 @@
+{{>header}}
+
+  <h1> {{{mensaje}}} </h1> 
+  <form action="/clientes" method="post">
+
+    <div class="row">
+      <label > Cedula </label>
+    <div class="col-sm">
+      <div id="listar">
+      </div>    
+     <!--  {{{listarnombres}}} -->
+      <input type="text" name="cedula"> 
+    </div>
+    <div class="col-sm">
+      <input type="submit" class='form-control btn btn-success' >
+    </div>    
+  </div>  	
+  </form>
+  <img src="banner-curso.jpg">
+ 
+
+
+{{>footer}}

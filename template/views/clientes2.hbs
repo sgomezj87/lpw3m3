@@ -1,0 +1,20 @@
+{{>header}}
+<p>Esta es la página de clientes </p>
+<form action="/actualizar" method="post">
+<div class="row">
+      <label> Registrar clientes 2</label>
+    <div class="col-sm">
+      <label for="cedula" class="form-label">Cedula</label>
+      <input type="text" name="cedula" class="form-control" value="{{{cedula}}}" readonly><br>
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" name="nombre" class="form-control" value="{{{nombre}}}"><br>
+      <label for="pais" class="form-label">Pais</label>
+      <input type="text" name="pais" class="form-control" value="{{{pais}}}" >
+    </div>
+    <div class="col-sm">
+      <input type="submit" class='form-control btn btn-success' >
+    </div>    
+  </div>
+ </form>
+
+{{>footer}}

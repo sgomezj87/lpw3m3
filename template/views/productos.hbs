@@ -1,0 +1,38 @@
+{{>header}}
+<p>Esta es la página de Productos </p>
+
+<h1> Lista de productos</h1>
+
+{{{error}}}
+<form  method="post">
+<table class="table">
+	<thead>
+		<th>id</th>
+		<th>Producto</th>
+		<th>Precio</th>
+		<th>Cantidad</th>
+	</thead>
+	<tbody>
+	{{{listarProductos res}}}
+	</tbody>
+</table>
+</form>
+
+<form action="/productos" method="post">
+    <div class="row">
+      <label> Registrar Productos</label>
+    <div class="col-sm">
+      <label for="nombre" class="form-label">Nombre del producto</label>
+      <input type="text" name="nombre" class="form-control" required><br>
+      <label for="nombre" class="form-label">Precio</label>
+      <input type="number" name="precio" class="form-control" required><br>
+      <label for="pais" class="form-label">Cantidad</label>
+      <input type="number" name="cantidad" class="form-control" >
+    </div>
+    <div class="col-sm">
+      <input type="submit" class='form-control btn btn-success' >
+    </div>    
+  </div>
+ </form>
+
+{{>footer}}

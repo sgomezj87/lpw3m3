@@ -1,0 +1,33 @@
+{{>header}}
+<p>Esta es la página de clientes </p>
+
+<h1> Lista de clientes</h1>
+<form action="/eliminar" method="post">
+<table class="table">
+	<thead>
+		<th>eliminar</th>
+		<th>cedula</th>
+		<th>nombre</th>
+		<th>pais</th>
+	</thead>
+	<tbody>
+	{{{listar res}}}
+	</tbody>
+</table>
+</form>
+
+<table class="table">
+	<thead>
+		<th>cedula</th>
+		<th>nombre</th>
+		<th>pais</th>
+		<th>id</th>
+		<th>producto</th>
+		<th>precio</th>
+	</thead>
+	<tbody>
+	{{{productopersona}}}
+	</tbody>
+</table>
+
+{{>footer}}
