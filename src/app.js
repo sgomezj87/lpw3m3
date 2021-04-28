@@ -56,7 +56,7 @@ mongoose.connect(urlDB ='mongodb://localhost:27017/clientes', {useNewUrlParser: 
 });
 */
 
-mongoose.connect(process.env.URLDB, {useNewUrlParser: true}, (err, resultado) => {
+mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useUnifiedTopology: true}, (err, resultado) => {
 	if (err){
 		return console.log(error)
 	}

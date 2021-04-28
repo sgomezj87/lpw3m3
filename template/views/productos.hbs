@@ -13,10 +13,18 @@
 		<th>Cantidad</th>
 	</thead>
 	<tbody>
-	{{{listarProductos res}}}
+    {{#each res1}}      
+      <tr>
+        <td>{{this.id}}</td> 
+        <td>{{this.nombreProducto}}</td>
+        <td>{{this.precio}}</td>
+        <td>{{this.cantidad}}</td>
+      </tr>       
+    {{/each}}	
 	</tbody>
 </table>
 </form>
+
 
 <form action="/productos" method="post">
     <div class="row">

@@ -9,8 +9,8 @@ const dirViews = path.join(__dirname, "../../template/views")
 const dirPartials = path.join(__dirname, '../../template/partials')
 const Cliente = require ('./../models/clientes')
 const {Producto, ClienteProducto} = require ('./../models/productos')
-//const bcrypt = require('bcryptjs');
-//const saltRounds = 10;
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
 
 //hbs
 app.set('view engine', 'hbs');
@@ -36,22 +36,23 @@ console.log(parseInt(req.body.usuario), req.body.contrasena)
 			if (!resultado){
 				mensaje= "El usuario no existe"
 			}
-			else{/*
+			else{
 				if(!bcrypt.compareSync(req.body.contrasena, resultado.contrasena)){
 					mensaje= "Contraseña incorrecta"
 				}
-				else{*/
+				else{
 					req.session.usuario = resultado._id
 					console.log("variable de sesión" + req.session.usuario)
 					req.session.nombre = resultado.nombre
 					mensaje= "Bienvenid@ " + resultado.nombre
-				//}	
+				}	
 				
 			}
 			res.render('index',{
 			titulo: 'Inicio',
 			mensaje: mensaje,
-			sesion : true
+			sesion : true,
+			nombre : req.session.nombre
 			})
 	})
 
@@ -80,7 +81,7 @@ app.post('/clientes', function(req, res) {
 		titulo: 'Ver cliente',
 		cedula: resultado.cedula,
 		nombre: resultado.nombre,
-		pais: resultado.pais
+		pais: resultado.pais		
 		})
 	})
 });
@@ -92,10 +93,11 @@ app.get('/registrar', function (req, res){
 })
 
 app.get('/productos', function (req, res){
-	Producto.find({cantidad:{$gt: 15}},(err,resultado)=>{
+	Producto.find({},(err,resultado)=>{
 				res.render('productos', {
 				titulo:'Productos',
-				res: resultado		
+				res: resultado,
+				res1: resultado	
 			})
 	})
 })
@@ -161,7 +163,7 @@ app.get('/clienteproducto', (req, res)=>{
 app.get('/clienteproducto', (req, res)=>{	
 	listado = []
 	Producto.find({},(err,resproductos)=>{
-		Cliente.find({ _id : req.session.usuario },(err, resclientes)=>{	
+		Cliente.find({ _id : req.session.usuario },(err, resclientes)=>{
 			Cliente.find().populate('compra').
   			exec(function (err, resultado) {
     			if (err) return handleError(err);
@@ -176,12 +178,17 @@ app.get('/clienteproducto', (req, res)=>{
     					})    				 	
     				})    			
   				});		
+  			if (req.session.usuario){
   			res.render('clienteproducto', {
 						titulo:'Comprar',
 						resp: resproductos,
 						resc: resclientes,
 						tabla : listado
-						})		
+						})	
+				}	
+			else {
+				res.redirect('/')
+			}
 			})					
 		})				
 	})
@@ -284,10 +291,10 @@ app.post('/clienteproducto', (req, res)=>{
 })
 */
 app.post('/registrar', function (req, res){
-	//const salt = bcrypt.genSaltSync(saltRounds);
+	const salt = bcrypt.genSaltSync(saltRounds);
 	let cliente = new Cliente ({
 		cedula: req.body.cedula,
-		contrasena: req.body.contrasena,//bcrypt.hashSync(req.body.contrasena, salt),
+		contrasena: bcrypt.hashSync(req.body.contrasena, salt),
 		nombre: req.body.nombre,
 		pais: req.body.pais	
 	})
